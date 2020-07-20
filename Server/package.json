@@ -13,13 +13,21 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
     "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
     "sequelize-cli": "^6.2.0"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "eslint ./ --quiet",
+      "pre-commit": "lint-staged",
       "pre-push": ""
     }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "dependencies": {
     "body-parser": "^1.19.0",

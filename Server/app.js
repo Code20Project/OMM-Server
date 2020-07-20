@@ -7,7 +7,7 @@ const port = 3001;
 
 // routes
 const mentorRouter = require('./routes/mentor');
-const menteeRouter = require('./routes/mentee');
+// const menteeRouter = require('./routes/mentee');
 
 /*
  * bodyparser.json() - body로 넘어온 데이터를 JSON 객체로 변환
@@ -31,7 +31,7 @@ app.use(
 );
 
 app.use('/mentor', mentorRouter);
-app.use('/mentee', menteeRouter);
+// app.use('/mentee', menteeRouter);
 
 app.set('port', port);
 app.listen(app.get('port'), () => {

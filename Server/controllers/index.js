@@ -1,4 +1,4 @@
 module.exports = {
-    mentorCotroller: require('./mentor'),
-    menteeCotroller: require('./mentee'),
+    mentorController: require('./mentor'),
+    menteeController: require('./mentee'),
   };

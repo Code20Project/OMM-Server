@@ -1,0 +1,45 @@
+{
+    "tables": {
+        "ApplyLecture": {
+            "tableName": "ApplyLecture",
+            "indexes": []
+        },
+        "ChatPeople": {
+            "tableName": "ChatPeople",
+            "indexes": []
+        },
+        "ChatRooms": {
+            "tableName": "ChatRooms",
+            "indexes": []
+        },
+        "Lecture": {
+            "tableName": "Lecture",
+            "indexes": []
+        },
+        "LectureTag": {
+            "tableName": "LectureTag",
+            "indexes": []
+        },
+        "Mentees": {
+            "tableName": "Mentees",
+            "indexes": []
+        },
+        "Mentors": {
+            "tableName": "Mentors",
+            "indexes": []
+        },
+        "Reservation": {
+            "tableName": "Reservation",
+            "indexes": []
+        },
+        "SequelizeMeta": {
+            "tableName": "SequelizeMeta",
+            "indexes": []
+        },
+        "Tag": {
+            "tableName": "Tag",
+            "indexes": []
+        }
+    },
+    "revision": 1
+}

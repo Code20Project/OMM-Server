@@ -44,12 +44,9 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING(255),
       allowNull: true,
     },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
   }, {
     sequelize,
     tableName: 'Mentors',
+    timestamps: false,
   });
 };

@@ -27,6 +27,5 @@ module.exports = {
         .catch((err) => {
             res.status(404).send(err);
         });
-        res.json({ message: 'ok!' });
     },
 };

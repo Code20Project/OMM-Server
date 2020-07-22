@@ -13,6 +13,5 @@ module.exports = {
         } else {
             res.redirect('/');
         }
-        res.json({ message: 'ok!' });
     },
 };

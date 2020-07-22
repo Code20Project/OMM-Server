@@ -9,7 +9,6 @@ CREATE TABLE `Mentors` (
   `birthday` varchar(255),
   `certification_path` varchar(255),
   `intro` varchar(255),
-  `created_at` timestamp
 );
 
 CREATE TABLE `Mentees` (
@@ -21,7 +20,6 @@ CREATE TABLE `Mentees` (
   `phone` varchar(255),
   `birthday` varchar(255),
   `point` int,
-  `created_at` timestamp
 );
 
 CREATE TABLE `Lecture` (

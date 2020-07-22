@@ -32,8 +32,5 @@ module.exports = {
         }).catch((err) => {
             res.status(500).send(err);
         });
-
-        console.log('/mentor/signout');
-        res.json({ message: 'ok!' });
     },
 };

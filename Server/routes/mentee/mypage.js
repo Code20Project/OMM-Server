@@ -7,8 +7,8 @@ const { mypageController } = require('../../controllers/mentee');
 //  * GET /profile
 router.get('/profile/:id', mypageController.profile.get);
 
-//  * POST /profile
-router.post('/profile/:id', mypageController.profile.post);
+//  * PATCH /profile
+router.patch('/profile/:id', mypageController.profile.patch);
 
 //  * GET /pre-ordered_Lectures
 router.get('/pre-ordered-lectures/:id', mypageController.preOrderedLectures.get);

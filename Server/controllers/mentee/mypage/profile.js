@@ -4,7 +4,7 @@ module.exports = {
         console.log(req.params);
         res.json({ message: 'ok!' });
     },
-    post: (req, res) => {
+    patch: (req, res) => {
         console.log('POST mypage/profile');
         console.log(req.params);
         res.json({ message: 'ok!' });

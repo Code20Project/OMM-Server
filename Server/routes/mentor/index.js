@@ -6,10 +6,10 @@ const { mentorController } = require('../../controllers');
 
 const mypageRouter = require('./mypage');
 
-// * POST /signup
+// * POST /signin
 router.post('/signin', mentorController.signin.post);
 
-// * POST /signin
+// * POST /signup
 router.post('/signup', mentorController.signup.post);
 
 // * GET /signout

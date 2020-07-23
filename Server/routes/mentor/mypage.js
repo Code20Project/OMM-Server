@@ -11,6 +11,6 @@ router.get('/profile/:id', mentorController.mypage.profile.get);
 router.post('/profile/:id', mentorController.mypage.profile.post);
 
 // * GET /pre-ordered_Lectures
-router.get('/pre-ordered_Lectures/:id', mentorController.mypage.preOrderedLectures.get);
+router.get('/pre-ordered-lectures/:id', mentorController.mypage.preOrderedLectures.get);
 
 module.exports = router;

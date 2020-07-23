@@ -225,10 +225,6 @@ const migrationCommands = [{
                     type: DataTypes.INTEGER,
                     allowNull: true,
                   },
-                  created_at: {
-                    type: DataTypes.DATE,
-                    allowNull: true,
-                  },
             },
             {},
         ],

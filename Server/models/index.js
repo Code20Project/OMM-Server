@@ -8,7 +8,7 @@ const Sequelize = require('sequelize');
 
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development'; // 환경변수 NODE_ENV를 설정 안 해줄 경우 test 객체 연결 정보로 DB 연결 설정
-const config = require(__dirname, +'/../config/config.js')[env];
+const config = require(`${__dirname}/../config/config.js`)[env];
 const db = {};
 
 let sequelize;

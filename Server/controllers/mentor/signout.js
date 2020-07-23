@@ -1,6 +1,15 @@
 module.exports = {
     get: (req, res) => {
-        console.log('/mentor/signout');
-        res.json({ message: 'ok!' });
+        if (req.userid) {
+            req.destroy((err) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.redirect('/');
+                }
+            });
+        } else {
+            res.redirect('/');
+        }
     },
 };

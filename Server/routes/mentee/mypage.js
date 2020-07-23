@@ -2,15 +2,24 @@ const express = require('express');
 
 const router = express.Router();
 
-const { menteeController } = require('../../controllers');
+const { mypageController } = require('../../controllers/mentee');
 
 //  * GET /profile
-router.get('/profile/:id', menteeController.mypage.profile.get);
+router.get('/profile/:id', mypageController.profile.get);
 
 //  * POST /profile
-router.post('/profile/:id', menteeController.mypage.profile.post);
+router.post('/profile/:id', mypageController.profile.post);
 
-// * GET /pre-ordered_Lectures
-router.get('/pre-ordered-lectures/:id', menteeController.mypage.preOrderedLectures.get);
+//  * GET /pre-ordered_Lectures
+router.get('/pre-ordered-lectures/:id', mypageController.preOrderedLectures.get);
+
+//  * GET /my-lecture-list
+router.get('/my-lecture-list', mypageController.myLectureList.get);
+
+//  * GET /my-point-basket
+router.get('/my-point-basket', mypageController.myPointBusket.get);
+
+//  * GET /my-wish-list
+router.get('/my-wish-list', mypageController.myWishList.get);
 
 module.exports = router;

@@ -4,4 +4,8 @@ module.exports = {
         console.log('GET /mentor/navigationbar/time-registered-lecture');
         res.status(200).json({ message: 'ok!' });
     },
+    post: (req, res) => { // mentor가 예약 등록한 강의 정보들을 DB에 저장합니다.
+        console.log('POST /mentor/navigationbar/time-registered-lecture');
+        res.status(200).json({ message: 'ok!' });
+    },
 };

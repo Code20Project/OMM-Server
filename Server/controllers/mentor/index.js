@@ -3,4 +3,5 @@ module.exports = {
     signout: require('./signout'),
     signup: require('./signup'),
     mypageController: require('./mypage'),
+    navigationbarController: require('./navigationbar'),
   };

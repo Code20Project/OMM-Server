@@ -25,32 +25,33 @@ module.exports = {
     },
     post: (req, res) => {
         const {
-            username, nickname, sex, birthday, phone, intro,
+            nickname, birthday, phone, intro,
         } = req.body;
         Mentors
         .findOne({
             where: {
                 id: req.params.id,
             },
-            defaults: {
-                username,
-                nickname,
-                sex,
-                birthday,
-                phone,
-                intro,
-                null: null,
-            },
         })
         .then((result) => {
             if (result) {
-                res.status(200).json(result);
+                Mentors.update({
+                    nickname,
+                    birthday,
+                    phone,
+                    intro,
+                }, { where: { id: req.params.id } })
+                .then(() => res.status(200).json({ message: 'ok!' })).catch((err) => {
+                    console.log(err);
+                });
             } else {
-                res.status(409).send('Wrong Access');
+                res.status(409).json({
+                    message: 'Wrong Access',
+                  });
             }
         })
         .catch((err) => {
-            res.status(500).send(err);
+            res.status(500).json({ message: err });
         });
     },
 };

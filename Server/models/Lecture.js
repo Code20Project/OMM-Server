@@ -49,6 +49,5 @@ module.exports = function (sequelize, DataTypes) {
   }, {
     sequelize,
     tableName: 'Lecture',
-    timestamps: false,
   });
 };

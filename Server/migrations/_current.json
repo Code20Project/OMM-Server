@@ -16,6 +16,10 @@
             "tableName": "Lecture",
             "indexes": []
         },
+        "LectureReservation": {
+            "tableName": "LectureReservation",
+            "indexes": []
+        },
         "LectureTag": {
             "tableName": "LectureTag",
             "indexes": []
@@ -32,8 +36,8 @@
             "tableName": "Reservation",
             "indexes": []
         },
-        "SequelizeMeta": {
-            "tableName": "SequelizeMeta",
+        "Review": {
+            "tableName": "Review",
             "indexes": []
         },
         "Tag": {

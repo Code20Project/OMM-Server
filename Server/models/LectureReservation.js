@@ -1,32 +1,38 @@
 /* jshint indent: 2 */
 
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('Reservation', {
+  return sequelize.define('LectureReservation', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
     },
-    mentee_id: {
+    lecture_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
         model: {
-          tableName: 'Mentees',
+          tableName: 'Lecture',
         },
         key: 'id',
       },
     },
-    Lecture_reservation_id: {
+    reservation_datetime: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    max: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      references: {
-        model: {
-          tableName: 'LectureReservation',
-        },
-        key: 'id',
-      },
+    },
+    class_link: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
+    status: {
+      type: DataTypes.INTEGER(1),
+      allowNull: true,
     },
     created_at: {
       type: DataTypes.DATE,
@@ -34,6 +40,6 @@ module.exports = function (sequelize, DataTypes) {
     },
   }, {
     sequelize,
-    tableName: 'Reservation',
+    tableName: 'LectureReservation',
   });
 };

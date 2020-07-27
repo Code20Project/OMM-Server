@@ -13,7 +13,7 @@ module.exports = {
             })
             .then((result) => {
                 if (result) {
-                    res.status(200).json(result);
+                    res.status(200).json({ message: 'OK!' });
                 } else {
                     res.status(409).json({ message: 'Wrong Access' });
                 }

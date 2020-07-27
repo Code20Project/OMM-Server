@@ -5,6 +5,7 @@ const router = express.Router();
 const { mentorController } = require('../../controllers');
 
 const mypageRouter = require('./mypage');
+const navigationbarRouter = require('./navigationbar');
 
 // * POST /signin
 router.post('/signin', mentorController.signin.post);
@@ -16,5 +17,7 @@ router.post('/signup', mentorController.signup.post);
 router.get('/signout', mentorController.signout.get);
 
 router.use('/mypage', mypageRouter);
+
+router.use('/navigationbar', navigationbarRouter);
 
 module.exports = router;

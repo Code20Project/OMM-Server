@@ -1,3 +1,4 @@
+  
 CREATE TABLE `Mentors` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `mentor_name` varchar(255),
@@ -9,6 +10,7 @@ CREATE TABLE `Mentors` (
   `birthday` varchar(255),
   `certification_path` varchar(255),
   `intro` varchar(255),
+  `created_at` timestamp
 );
 
 CREATE TABLE `Mentees` (
@@ -20,6 +22,7 @@ CREATE TABLE `Mentees` (
   `phone` varchar(255),
   `birthday` varchar(255),
   `point` int,
+  `created_at` timestamp
 );
 
 CREATE TABLE `Lecture` (
@@ -51,7 +54,7 @@ CREATE TABLE `LectureReservation` (
   `reservation_datetime` datetime,
   `max` int,
   `class_link` varchar(255),
-  `status` Enum,
+  `status` boolean,
   `created_at` timestamp
 );
 
@@ -78,6 +81,15 @@ CREATE TABLE `ChatPeople` (
   `type` varchar(255)
 );
 
+CREATE TABLE `Review` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `lecture_id` int,
+  `mentee_id` int,
+  `comment` varchar(255),
+  `star` int,
+  `created_at` timestamp
+);
+
 ALTER TABLE `LectureTag` ADD FOREIGN KEY (`lecture_id`) REFERENCES `Lecture` (`id`);
 
 ALTER TABLE `LectureTag` ADD FOREIGN KEY (`tag_id`) REFERENCES `Tag` (`id`);
@@ -97,3 +109,7 @@ ALTER TABLE `Reservation` ADD FOREIGN KEY (`Lecture_reservation_id`) REFERENCES 
 ALTER TABLE `ChatRooms` ADD FOREIGN KEY (`lecture_id`) REFERENCES `Lecture` (`id`);
 
 ALTER TABLE `ChatPeople` ADD FOREIGN KEY (`chatroom_id`) REFERENCES `ChatRooms` (`id`);
+
+ALTER TABLE `Review` ADD FOREIGN KEY (`lecture_id`) REFERENCES `Lecture` (`id`);
+
+ALTER TABLE `Review` ADD FOREIGN KEY (`mentee_id`) REFERENCES `Mentees` (`id`);

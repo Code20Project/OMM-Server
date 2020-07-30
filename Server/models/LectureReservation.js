@@ -38,7 +38,16 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: true,
     },
-  }, {
+  },
+  {
+    tableName: 'LectureReservation',
+    classMethods: {
+ associate(models) {
+   models.LectureReservation.belongsTo(models.Lecture, { foreignKey: 'id' });
+    },
+},
+  },
+   {
     sequelize,
     tableName: 'LectureReservation',
   });

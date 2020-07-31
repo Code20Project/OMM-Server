@@ -1,29 +1,60 @@
 const DataTypes = require('sequelize/lib/data-types');
 
-// console.log(Sequelize);
-
-/*
-  Actions summary:
-  createTable 'ApplyLecture', deps: []
-  createTable "ChatPeople", deps: []
-  createTable "ChatRooms", deps: []
-  createTable "Lecture", deps: []
-  createTable "LectureTag", deps: []
-  createTable "Mentees", deps: []
-  createTable "Mentors", deps: []
-  createTable "Reservation", deps: []
-  createTable "SequelizeMeta", deps: []
-  createTable "Tag", deps: []
- */
+/**
+ * Actions summary:
+ *
+ * createTable "LectureTag", deps: []
+ * createTable "ApplyLecture", deps: []
+ * createTable "ChatRooms", deps: []
+ * createTable "Lecture", deps: []
+ * createTable "LectureReservation", deps: []
+ * createTable "ChatPeople", deps: []
+ * createTable "Mentees", deps: []
+ * createTable "Mentors", deps: []
+ * createTable "Reservation", deps: []
+ * createTable "Review", deps: []
+ * createTable "Tag", deps: []
+ *
+ * */
 
 const info = {
     revision: 1,
     name: 'user',
-    created: '2020-07-20T14:57:39.145Z',
+    created: '2020-07-27T05:13:13.705Z',
     comment: '',
 };
 
 const migrationCommands = [{
+        fn: 'createTable',
+        params: [
+            'LectureTag',
+            {
+                lecture_id: {
+                    type: DataTypes.INTEGER,
+                    allowNull: true,
+                    references: {
+                      model: {
+                        tableName: 'Lecture',
+                      },
+                      key: 'id',
+                    },
+                  },
+                  tag_id: {
+                    type: DataTypes.INTEGER,
+                    allowNull: true,
+                    references: {
+                      model: {
+                        tableName: 'Tag',
+                      },
+                      key: 'id',
+                    },
+                  },
+
+            },
+            {},
+        ],
+    },
+    {
         fn: 'createTable',
         params: [
             'ApplyLecture',
@@ -47,33 +78,6 @@ const migrationCommands = [{
                       },
                       key: 'id',
                     },
-                  },
-            },
-            {},
-        ],
-    },
-    {
-        fn: 'createTable',
-        params: [
-            'ChatPeople',
-            {
-                chatroom_id: {
-                    type: DataTypes.INTEGER,
-                    allowNull: true,
-                    references: {
-                      model: {
-                        tableName: 'ChatRooms',
-                      },
-                      key: 'id',
-                    },
-                  },
-                  person_id: {
-                    type: DataTypes.INTEGER,
-                    allowNull: true,
-                  },
-                  type: {
-                    type: DataTypes.STRING(255),
-                    allowNull: true,
                   },
             },
             {},
@@ -160,9 +164,15 @@ const migrationCommands = [{
     {
         fn: 'createTable',
         params: [
-            'LectureTag',
+            'LectureReservation',
             {
-                lecture_id: {
+                id: {
+                    autoIncrement: true,
+                    type: DataTypes.INTEGER,
+                    allowNull: false,
+                    primaryKey: true,
+                  },
+                  lecture_id: {
                     type: DataTypes.INTEGER,
                     allowNull: true,
                     references: {
@@ -172,15 +182,52 @@ const migrationCommands = [{
                       key: 'id',
                     },
                   },
-                  tag_id: {
+                  reservation_datetime: {
+                    type: DataTypes.DATE,
+                    allowNull: true,
+                  },
+                  max: {
+                    type: DataTypes.INTEGER,
+                    allowNull: true,
+                  },
+                  class_link: {
+                    type: DataTypes.STRING(255),
+                    allowNull: true,
+                  },
+                  status: {
+                    type: DataTypes.INTEGER(1),
+                    allowNull: true,
+                  },
+                  created_at: {
+                    type: DataTypes.DATE,
+                    allowNull: true,
+                  },
+            },
+            {},
+        ],
+    },
+    {
+        fn: 'createTable',
+        params: [
+            'ChatPeople',
+            {
+                chatroom_id: {
                     type: DataTypes.INTEGER,
                     allowNull: true,
                     references: {
                       model: {
-                        tableName: 'Tag',
+                        tableName: 'ChatRooms',
                       },
                       key: 'id',
                     },
+                  },
+                  person_id: {
+                    type: DataTypes.INTEGER,
+                    allowNull: true,
+                  },
+                  type: {
+                    type: DataTypes.STRING(255),
+                    allowNull: true,
                   },
             },
             {},
@@ -280,6 +327,10 @@ const migrationCommands = [{
                     type: DataTypes.STRING(255),
                     allowNull: true,
                   },
+                  created_at: {
+                    type: DataTypes.DATE,
+                    allowNull: true,
+                  },
             },
             {},
         ],
@@ -308,6 +359,12 @@ const migrationCommands = [{
                   Lecture_reservation_id: {
                     type: DataTypes.INTEGER,
                     allowNull: true,
+                    references: {
+                      model: {
+                        tableName: 'LectureReservation',
+                      },
+                      key: 'id',
+                    },
                   },
                   created_at: {
                     type: DataTypes.DATE,
@@ -320,12 +377,45 @@ const migrationCommands = [{
     {
         fn: 'createTable',
         params: [
-            'SequelizeMeta',
+            'Review',
             {
-                name: {
-                    type: DataTypes.STRING(255),
+                id: {
+                    autoIncrement: true,
+                    type: DataTypes.INTEGER,
                     allowNull: false,
                     primaryKey: true,
+                  },
+                  lecture_id: {
+                    type: DataTypes.INTEGER,
+                    allowNull: true,
+                    references: {
+                      model: {
+                        tableName: 'Lecture',
+                      },
+                      key: 'id',
+                    },
+                  },
+                  mentee_id: {
+                    type: DataTypes.INTEGER,
+                    allowNull: true,
+                    references: {
+                      model: {
+                        tableName: 'Mentees',
+                      },
+                      key: 'id',
+                    },
+                  },
+                  comment: {
+                    type: DataTypes.STRING(255),
+                    allowNull: true,
+                  },
+                  star: {
+                    type: DataTypes.INTEGER,
+                    allowNull: true,
+                  },
+                  created_at: {
+                    type: DataTypes.DATE,
+                    allowNull: true,
                   },
             },
             {},
@@ -359,8 +449,7 @@ const migrationCommands = [{
 module.exports = {
     pos: 0,
     // eslint-disable-next-line no-unused-vars
-    // eslint-disable-next-line no-shadow
-    up(queryInterface) {
+    up(queryInterface, Sequelize) {
         let index = this.pos;
         return new Promise((resolve, reject) => {
             function next() {

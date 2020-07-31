@@ -21,6 +21,12 @@ module.exports = function (sequelize, DataTypes) {
     Lecture_reservation_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
+      references: {
+        model: {
+          tableName: 'LectureReservation',
+        },
+        key: 'id',
+      },
     },
     created_at: {
       type: DataTypes.DATE,

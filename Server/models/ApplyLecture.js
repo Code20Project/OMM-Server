@@ -1,29 +1,27 @@
-/* jshint indent: 2 */
-
-module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('ApplyLecture', {
-    lecture_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: {
-          tableName: 'Lecture',
+module.exports = (sequelize, DataTypes) => {
+    const ApplyLectures = sequelize.define('ApplyLectures', {
+        lecture_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
         },
-        key: 'id',
-      },
-    },
-    mentee_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: {
-          tableName: 'Mentees',
+        mentee_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
         },
-        key: 'id',
-      },
-    },
-  }, {
-    sequelize,
-    tableName: 'ApplyLecture',
-  });
+    }, {
+        sequelize,
+        tableName: 'ApplyLecture',
+        timestamps: false,
+    });
+    ApplyLectures.associate = function (models) {
+        ApplyLectures.belongsTo(models.Mentees, {
+            foreignkey: 'mentee_id',
+        });
+    };
+    ApplyLectures.associate = function (models) {
+        ApplyLectures.belongsTo(models.Lecture, {
+            foreignKey: 'lecture_id',
+        });
+    };
+    return ApplyLectures;
 };

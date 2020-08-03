@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATE,
             allowNull: true,
         },
+    }, {
+        sequelize,
+        tableName: 'Reservation',
+        timestamps: false,
     });
     Reservation.associate = function (models) {
         Reservation.belongsTo(models.Mentees, {

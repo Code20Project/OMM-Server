@@ -12,7 +12,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(255),
             allowNull: true,
           },
-    });
+    }, {
+      sequelize,
+      tableName: 'ChatPeople',
+      timestamps: false,
+  });
     ChatPeople.associate = function (models) {
         ChatPeople.hasMany(models.ChatRooms);
     };

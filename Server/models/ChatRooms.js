@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: true,
           },
+    }, {
+        sequelize,
+        tableName: 'ChatRooms',
+        timestamps: false,
     });
     ChatRooms.associate = function (models) {
         ChatRooms.hasMany(models.ChatPeople);

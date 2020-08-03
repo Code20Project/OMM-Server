@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: true,
         },
+    }, {
+        sequelize,
+        tableName: 'LectureTag',
+        timestamps: false,
     });
     LectureTag.associate = function (models) {
         LectureTag.belongsTo(models.Tag, {

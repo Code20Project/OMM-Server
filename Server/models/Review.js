@@ -26,7 +26,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATE,
             allowNull: true,
           },
-    });
+    }, {
+      sequelize,
+      tableName: 'Review',
+      timestamps: false,
+  });
     Review.associate = function (models) {
         Review.belongsTo(models.Lecture, {
             foreignKey: 'lecture_id',

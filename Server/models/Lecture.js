@@ -38,7 +38,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATE,
             allowNull: true,
           },
-    });
+    }, {
+      sequelize,
+      tableName: 'Lecture',
+      timestamps: false,
+  });
     Lecture.associate = function (models) {
         Lecture.hasMany(models.ApplyLecture);
     };

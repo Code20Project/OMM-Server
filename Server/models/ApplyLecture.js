@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: true,
         },
+    }, {
+        sequelize,
+        tableName: 'ApplyLecture',
+        timestamps: false,
     });
     ApplyLectures.associate = function (models) {
         ApplyLectures.belongsTo(models.Mentees, {

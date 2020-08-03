@@ -44,8 +44,12 @@ module.exports = (sequelize, DataTypes) => {
         },
         created_at: {
             type: DataTypes.DATE,
-            allowNull: true,
+            allowNull: false,
         },
+    },
+    {
+        sequelize,
+        tableName: 'Mentors',
         timestamps: false,
     });
     Mentors.associate = function (models) {

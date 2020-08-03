@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATE,
             allowNull: true,
           },
+    }, {
+        sequelize,
+        tableName: 'Mentors',
+        timestamps: false,
     });
     Tag.associate = function (models) {
         Tag.hasMany(models.LectureTag);

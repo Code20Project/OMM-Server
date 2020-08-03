@@ -2,6 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+// Express 서버에서 발생하는 이벤트들을 기록해주는 미들웨어
+const morgan = require('morgan');
+
 const app = express();
 const port = 3001;
 
@@ -30,8 +33,29 @@ app.use(
   }),
 );
 
+// print the request log on console
+app.use(morgan('dev'));
+
+// set the secret key variable for jwt
+app.set('jwt-secret', 'omm');
+
 app.use('/mentor', mentorRouter);
 app.use('/mentee', menteeRouter);
+
+/*
+  POST /test
+  {
+    username,
+    password
+  }
+  
+*/
+
+// test code
+app.post('/test', (req, res) => {
+  res.send('this res is ok!');
+});
+
 
 app.set('port', port);
 app.listen(app.get('port'), () => {

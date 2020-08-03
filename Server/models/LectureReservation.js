@@ -1,54 +1,31 @@
-/* jshint indent: 2 */
-
-module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('LectureReservation', {
-    id: {
-      autoIncrement: true,
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-    },
-    lecture_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: {
-          tableName: 'Lecture',
+module.exports = (sequelize, DataTypes) => {
+    const LectureReservation = sequelize.define('LectureReservation', {
+        lecture_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
         },
-        key: 'id',
-      },
-    },
-    reservation_datetime: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
-    max: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    class_link: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    status: {
-      type: DataTypes.INTEGER(1),
-      allowNull: true,
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
-  },
-  {
-    tableName: 'LectureReservation',
-    classMethods: {
- associate(models) {
-   models.LectureReservation.belongsTo(models.Lecture, { foreignKey: 'id' });
-    },
-},
-  },
-   {
-    sequelize,
-    tableName: 'LectureReservation',
-  });
+        mentee_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+        },
+    }, {
+        sequelize,
+        tableName: 'LectureReservation',
+        timestamps: false,
+    });
+    LectureReservation.associate = function (models) {
+        LectureReservation.belongsTo(models.Mentee, {
+            foreignKey: {
+                allowNull: true,
+            },
+        });
+    };
+    LectureReservation.associate = function (models) {
+        LectureReservation.belongsTo(models.Lecture, {
+            foreignKey: {
+                allowNull: true,
+            },
+        });
+    };
+    return LectureReservation;
 };

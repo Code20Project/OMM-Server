@@ -1,27 +1,24 @@
-/* jshint indent: 2 */
-
-module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('ChatPeople', {
-    chatroom_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: {
-          tableName: 'ChatRooms',
-        },
-        key: 'id',
-      },
-    },
-    person_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    type: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-  }, {
-    sequelize,
-    tableName: 'ChatPeople',
+module.exports = (sequelize, DataTypes) => {
+    const ChatPeople = sequelize.define('ChatPeople', {
+        chatroom_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+          },
+          person_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+          },
+          type: {
+            type: DataTypes.STRING(255),
+            allowNull: true,
+          },
+    }, {
+      sequelize,
+      tableName: 'ChatPeople',
+      timestamps: false,
   });
+    ChatPeople.associate = function (models) {
+        ChatPeople.hasMany(models.ChatRooms);
+    };
+    return ChatPeople;
 };

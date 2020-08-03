@@ -13,7 +13,8 @@ module.exports = {
       allowNull: true,
     },
     mentee_id: {
-      type: Sequelize.DATE,
+      type: Sequelize.INTEGER,
+      references: { model: 'Mentees', key: 'id' },
       allowNull: true,
     },
     comment: {

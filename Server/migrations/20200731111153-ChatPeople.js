@@ -4,6 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('ChatPeople', {
     chatroom_id: {
       type: Sequelize.INTEGER,
+      references: { model: 'ChatRooms', key: 'id' },
       allowNull: true,
     },
     person_id: {

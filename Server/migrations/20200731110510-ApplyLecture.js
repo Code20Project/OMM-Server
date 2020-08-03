@@ -5,10 +5,12 @@ module.exports = {
     lecture_id: {
       type: Sequelize.INTEGER,
       allowNull: true,
+      references: { model: 'Lecture', key: 'id' },
   },
   mentee_id: {
       type: Sequelize.INTEGER,
       allowNull: true,
+      references: { model: 'Mentees', key: 'id' },
   },
 }),
 

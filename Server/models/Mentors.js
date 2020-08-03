@@ -46,6 +46,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATE,
             allowNull: true,
         },
+        timestamps: false,
     });
     Mentors.associate = function (models) {
         Mentors.hasMany(models.Lecture);

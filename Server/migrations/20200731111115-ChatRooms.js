@@ -10,6 +10,7 @@ module.exports = {
     },
     lecture_id: {
       type: Sequelize.INTEGER,
+      references: { model: 'Lecture', key: 'id' },
       allowNull: true,
     },
 }),

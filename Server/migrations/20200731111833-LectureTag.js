@@ -8,6 +8,7 @@ module.exports = {
   },
   tag_id: {
       type: Sequelize.INTEGER,
+      references: { model: 'Tag', key: 'id' },
       allowNull: true,
   },
 }),

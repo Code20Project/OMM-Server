@@ -10,10 +10,13 @@ module.exports = {
   },
   mentee_id: {
       type: Sequelize.INTEGER,
+      references: { model: 'Mentees', key: 'id' },
+
       allowNull: true,
   },
   Lecture_reservation_id: {
       type: Sequelize.INTEGER,
+      references: { model: 'LectureReservation', key: 'id' },
       allowNull: true,
   },
   created_at: {

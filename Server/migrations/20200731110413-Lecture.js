@@ -35,6 +35,7 @@ module.exports = {
     mentor_id: {
         type: Sequelize.INTEGER,
         allowNull: true,
+        references: { model: 'Mentors', key: 'id' },
     },
     created_at: {
       type: Sequelize.DATE,

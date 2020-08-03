@@ -1,25 +1,23 @@
-/* jshint indent: 2 */
-
-module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('ChatRooms', {
-    id: {
-      autoIncrement: true,
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-    },
-    lecture_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: {
-          tableName: 'Lecture',
-        },
-        key: 'id',
-      },
-    },
-  }, {
-    sequelize,
-    tableName: 'ChatRooms',
-  });
+module.exports = (sequelize, DataTypes) => {
+    const ChatRooms = sequelize.define('ChatRooms', {
+        id: {
+            autoIncrement: true,
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+          },
+          lecture_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+          },
+    });
+    ChatRooms.associate = function (models) {
+        ChatRooms.hasMany(models.ChatPeople);
+    };
+    ChatRooms.associate = function (models) {
+        ChatRooms.belongsTo(models.Lecture, {
+            foreignKey: 'ChatRooms_id',
+        });
+    };
+    return ChatRooms;
 };

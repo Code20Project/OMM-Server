@@ -1,11 +1,11 @@
 const db = require('../../../models');
 
-const { ApplyLecture } = db;
+const { Reservation } = db;
 
 module.exports = {
     get: (req, res) => {
         if (req.params.id) {
-            ApplyLecture
+            Reservation
             .findOne({
                 where: {
                     id: req.params.id,

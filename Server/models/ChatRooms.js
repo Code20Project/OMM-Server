@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     };
     ChatRooms.associate = function (models) {
         ChatRooms.belongsTo(models.Lecture, {
-            foreignKey: 'ChatRooms_id',
+            foreignKey: 'lecture_id',
         });
     };
     return ChatRooms;

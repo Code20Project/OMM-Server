@@ -4,13 +4,28 @@ const { Mentees } = db;
 
 module.exports = {
     get: (req, res) => {
-        console.log('GET mypage/profile');
-        console.log(req.params);
-        res.json({ message: 'ok!' });
+        if (req.params.id) {
+            Mentees
+            .findOne({
+                where: {
+                    id: req.params.id,
+                },
+            })
+            .then((result) => {
+                if (result) {
+                    res.status(200).json({ message: 'ok!' });
+                } else {
+                    res.status(409).json({ message: 'Wrong Access' });
+                }
+            })
+            .catch((err) => {
+                res.status(500).json({ message: err });
+            });
+        }
     },
     patch: (req, res) => {
         const {
-            nickname, birthday, phone, intro,
+            username, nickname, sex, birthday, phone,
         } = req.body;
         Mentees
         .findOne({
@@ -21,10 +36,11 @@ module.exports = {
         .then((result) => {
             if (result) {
                 Mentees.update({
+                    username,
                     nickname,
+                    sex,
                     birthday,
                     phone,
-                    intro,
                 }, { where: { id: req.params.id } })
                 .then(() => res.status(200).json({ message: 'ok!' })).catch((err) => {
                     console.log(err);

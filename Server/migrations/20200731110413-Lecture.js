@@ -37,10 +37,6 @@ module.exports = {
         allowNull: true,
         references: { model: 'Mentors', key: 'id' },
     },
-    created_at: {
-      type: Sequelize.DATE,
-      allowNull: true,
-    },
 }),
 
   // eslint-disable-next-line no-unused-vars

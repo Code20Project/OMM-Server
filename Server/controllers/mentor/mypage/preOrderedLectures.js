@@ -1,21 +1,27 @@
 const db = require('../../../models');
 
+const { LectureReservation } = db;
 const { Lecture } = db;
 
 module.exports = {
     get: (req, res) => {
         if (req.params.id) {
-            Lecture
+            LectureReservation
             .findOne({
+                include: [
+                    {
+                        model: Lecture,
+                    },
+                ],
                 where: {
-                    id: req.params.id,
+                    lecture_id: req.params.id,
                 },
             })
             .then((result) => {
                 if (result) {
-                    res.status(200).json(result);
+                    res.status(200).json({ message: 'OK!' });
                 } else {
-                    res.status(409).send('Wrong Access');
+                    res.status(409).json({ message: 'Wrong Access' });
                 }
             })
             .catch((err) => {

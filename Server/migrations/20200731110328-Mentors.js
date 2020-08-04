@@ -8,7 +8,7 @@ module.exports = {
       allowNull: false,
       primaryKey: true,
   },
-  menter_name: {
+  mentor_name: {
       type: Sequelize.STRING(255),
       allowNull: true,
   },
@@ -42,10 +42,6 @@ module.exports = {
   },
   intro: {
       type: Sequelize.STRING(255),
-      allowNull: true,
-  },
-  created_at: {
-      type: Sequelize.DATE,
       allowNull: true,
   },
 }),

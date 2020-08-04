@@ -13,13 +13,13 @@ module.exports = {
             })
             .then((result) => {
                 if (result) {
-                    res.status(200).json(result);
+                    res.status(200).json({ message: 'ok!' });
                 } else {
-                    res.status(409).send('Wrong Access');
+                    res.status(409).json({ message: 'Wrong Access' });
                 }
             })
             .catch((err) => {
-                res.status(500).send(err);
+                res.status(500).json({ message: err });
             });
         }
     },

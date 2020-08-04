@@ -12,10 +12,6 @@ module.exports = {
       type: Sequelize.STRING(255),
       allowNull: true,
     },
-    created_at: {
-      type: Sequelize.DATE,
-      allowNull: true,
-    },
 }),
 
   // eslint-disable-next-line no-unused-vars

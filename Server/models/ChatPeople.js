@@ -17,8 +17,10 @@ module.exports = (sequelize, DataTypes) => {
       tableName: 'ChatPeople',
       timestamps: false,
   });
-    ChatPeople.associate = function (models) {
-        ChatPeople.hasMany(models.ChatRooms);
-    };
+  ChatPeople.associate = function (models) {
+    ChatPeople.belongsTo(models.ChatRooms, {
+        foreignKey: 'chatroom_id',
+    });
+};
     return ChatPeople;
 };

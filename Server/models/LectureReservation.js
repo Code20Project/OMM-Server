@@ -14,19 +14,11 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: false,
     });
     LectureReservation.associate = function (models) {
-        LectureReservation.belongsTo(models.Mentee, {
-            onDelete: 'CASCADE',
-            foreignKey: {
-                allowNull: true,
-            },
-        });
+        LectureReservation.hasMany(models.Reservation);
     };
     LectureReservation.associate = function (models) {
         LectureReservation.belongsTo(models.Lecture, {
-            onDelete: 'CASCADE',
-            foreignKey: {
-                allowNull: true,
-            },
+            foreignKey: 'lecture_id',
         });
     };
     return LectureReservation;

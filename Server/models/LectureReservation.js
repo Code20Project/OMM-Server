@@ -15,7 +15,6 @@ module.exports = (sequelize, DataTypes) => {
     });
     LectureReservation.associate = function (models) {
         LectureReservation.belongsTo(models.Mentee, {
-            onDelete: 'CASCADE',
             foreignKey: {
                 allowNull: true,
             },
@@ -23,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
     };
     LectureReservation.associate = function (models) {
         LectureReservation.belongsTo(models.Lecture, {
-            onDelete: 'CASCADE',
             foreignKey: {
                 allowNull: true,
             },

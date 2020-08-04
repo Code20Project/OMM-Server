@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             primaryKey: true,
         },
-        menter_name: {
+        mentor_name: {
             type: DataTypes.STRING(255),
             allowNull: true,
         },

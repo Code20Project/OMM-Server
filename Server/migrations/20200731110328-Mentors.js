@@ -8,7 +8,7 @@ module.exports = {
       allowNull: false,
       primaryKey: true,
   },
-  menter_name: {
+  mentor_name: {
       type: Sequelize.STRING(255),
       allowNull: true,
   },

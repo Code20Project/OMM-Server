@@ -14,7 +14,7 @@ module.exports = {
                     },
                 ],
                 where: {
-                    id: req.params.id,
+                    mentee_id: req.params.id,
                 },
             })
             .then((result) => {

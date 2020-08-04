@@ -22,10 +22,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: true,
           },
-          created_at: {
-            type: DataTypes.DATE,
-            allowNull: true,
-          },
     }, {
       sequelize,
       tableName: 'Review',

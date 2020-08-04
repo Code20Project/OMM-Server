@@ -19,10 +19,6 @@ module.exports = {
       references: { model: 'LectureReservation', key: 'id' },
       allowNull: true,
   },
-  created_at: {
-      type: Sequelize.DATE,
-      allowNull: true,
-  },
 }),
 
   // eslint-disable-next-line no-unused-vars

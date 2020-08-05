@@ -9,6 +9,7 @@ const app = express();
 const port = 3001;
 
 // routes
+const jwt = require('jsonwebtoken');
 const mentorRouter = require('./routes/mentor');
 const menteeRouter = require('./routes/mentee');
 
@@ -27,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
  */
 app.use(
   cors({
-    origin: ['http://localhost:3000'],
+    // origin: ['http://localhost:3000'],
     methods: ['GET', 'POST', 'PATCH'],
     credentials: true,
   }),
@@ -48,14 +49,34 @@ app.use('/mentee', menteeRouter);
     username,
     password
   }
-  
+
 */
 
 // test code
-app.post('/test', (req, res) => {
-  res.send('this res is ok!');
-});
 
+app.post('/test', (req, res) => {
+  const secret = 'omm';
+  const p = new Promise((resolve, reject) => {
+    jwt.sign(
+        {
+            _id: 'user._id',
+            username: 'user.username',
+            admin: 'user.admin',
+        },
+        secret,
+        {
+            expiresIn: '7d',
+            issuer: 'velopert.com',
+            subject: 'userInfo',
+        }, (err, token) => {
+            if (err) reject(err);
+            resolve(token);
+        },
+);
+});
+p.then((token) => res.send(token));
+  // res.send('this res is ok!');
+});
 
 app.set('port', port);
 app.listen(app.get('port'), () => {

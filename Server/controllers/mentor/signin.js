@@ -14,8 +14,8 @@ module.exports = {
             },
         })
         .then((result) => {
-            if (result === null) {
-                res.status(404).send('unvalid user');
+            if (!result) {
+                res.status(404).json({ message: 'unvalid user' });
             } else {
                 req.userid = result.id;
                 res.status(200).json({
@@ -24,7 +24,7 @@ module.exports = {
             }
         })
         .catch((err) => {
-            res.status(404).send(err);
+            res.status(404).json({ message: err });
         });
     },
 };

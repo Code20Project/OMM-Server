@@ -14,13 +14,12 @@ module.exports = {
             },
         })
         .then((result) => {
-            if (result === null) {
-                res.status(404).send('unvalid user');
+            if (result) {
+                const { id } = result;
+                req.params.userid = id;
+                res.status(200).json({ message: 'ok!' });
             } else {
-                req.userid = result.id;
-                res.status(200).json({
-                    id: result.id,
-                });
+                res.status(404).json({ message: 'unvaild user' });
             }
         })
         .catch((err) => {

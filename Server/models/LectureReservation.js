@@ -1,11 +1,17 @@
 module.exports = (sequelize, DataTypes) => {
     const LectureReservation = sequelize.define('LectureReservation', {
+        id: {
+            autoIncrement: true,
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+          },
         lecture_id: {
             type: DataTypes.INTEGER,
             allowNull: true,
         },
-        mentee_id: {
-            type: DataTypes.INTEGER,
+        reservation_datetime: {
+            type: DataTypes.DATE,
             allowNull: true,
         },
     }, {

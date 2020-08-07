@@ -1,3 +1,4 @@
+  
 CREATE TABLE `Mentors` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `mentor_name` varchar(255),
@@ -111,4 +112,8 @@ ALTER TABLE `ChatPeople` ADD FOREIGN KEY (`chatroom_id`) REFERENCES `ChatRooms` 
 
 ALTER TABLE `Review` ADD FOREIGN KEY (`lecture_id`) REFERENCES `Lecture` (`id`);
 
+<<<<<<< HEAD
 ALTER TABLE `Review` ADD FOREIGN KEY (`mentee_id`) REFERENCES `Mentees` (`id`);
+=======
+ALTER TABLE `Review` ADD FOREIGN KEY (`mentee_id`) REFERENCES `Mentees` (`id`);
+>>>>>>> Feature/39/Error-SqAuto

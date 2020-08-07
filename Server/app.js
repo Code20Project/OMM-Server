@@ -2,8 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+// Express 서버에서 발생하는 이벤트들을 기록해주는 미들웨어
+const morgan = require('morgan');
+
 const app = express();
 const port = 3001;
+
+const { jwtVerify } = require('./jwt');
 
 // routes
 const mentorRouter = require('./routes/mentor');
@@ -24,14 +29,42 @@ app.use(bodyParser.urlencoded({ extended: false }));
  */
 app.use(
   cors({
-    origin: ['http://localhost:3000'],
+    // origin: ['http://localhost:3000'],
     methods: ['GET', 'POST', 'PATCH'],
     credentials: true,
   }),
 );
 
+// print the request log on console
+app.use(morgan('dev'));
+
+// set the secret key variable for jwt
+app.set('jwt-secret', 'omm@'); // secret 키의 값을 셋팅해준다. 추후에 데이터베이스에 저장된 데이터를 가져올 예정
+// req.app.get('jwt-secret'); 값을 가져오는 함수
+
 app.use('/mentor', mentorRouter);
 app.use('/mentee', menteeRouter);
+
+/*
+  POST /test
+  {
+    username,
+    password
+  }
+
+*/
+
+// test code
+
+app.post('/test', (req, res) => {
+// header에 저장되어 있는 x-access-token의 값을 가져옵니다.
+const token = req.get('x-access-token');
+jwtVerify(token).then((result) => {
+  console.log(result.id);
+  res.send(result);
+});
+// res.send('this res is ok!');
+});
 
 app.set('port', port);
 app.listen(app.get('port'), () => {

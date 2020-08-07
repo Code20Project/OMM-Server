@@ -1,4 +1,5 @@
 const db = require('../../models');
+const { jwtSign } = require('../../jwt');
 
 const { Mentees } = db;
 
@@ -14,12 +15,16 @@ module.exports = {
             },
         })
         .then((result) => {
-            if (result) {
-                const { id } = result;
-                req.params.userid = id;
-                res.status(200).json({ message: 'ok!' });
+            if (result === null) {
+                res.status(404).json({ message: 'unvalid user' });
             } else {
-                res.status(404).json({ message: 'unvaild user' });
+                jwtSign(result.id, result.username, 'mentee').then((token) => {
+                    res.set('x-access-token', token);
+                    res.status(200).json({
+                        username: result.username,
+                        position: 'mentee',
+                    });
+                });
             }
         })
         .catch((err) => {

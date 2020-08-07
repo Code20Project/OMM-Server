@@ -7,6 +7,8 @@ module.exports = {
         const {
             email, password, phone, birthday, sex,
         } = req.body;
+        // sequlize hooks를 사용해서 password를 암호화 하는 작업을 해야 한다.
+
         Mentees
         .findOrCreate({
             where: {

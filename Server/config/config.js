@@ -9,7 +9,7 @@ module.exports = {
 			dialect: 'mysql',
 			logging: false,
 	},
-	development: { // 배포할 때 RDS 연결 정보
+	development: { // 배포할 때 DATABASE 연결 정보
 			username: 'root',
 			password: process.env.DATABASE_PASSWORD,
 			database: 'user',

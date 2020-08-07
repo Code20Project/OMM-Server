@@ -8,8 +8,9 @@ const morgan = require('morgan');
 const app = express();
 const port = 3001;
 
+const { jwtVerify } = require('./jwt');
+
 // routes
-const jwt = require('jsonwebtoken');
 const mentorRouter = require('./routes/mentor');
 const menteeRouter = require('./routes/mentee');
 
@@ -38,7 +39,8 @@ app.use(
 app.use(morgan('dev'));
 
 // set the secret key variable for jwt
-app.set('jwt-secret', 'omm');
+app.set('jwt-secret', 'omm@'); // secret 키의 값을 셋팅해준다. 추후에 데이터베이스에 저장된 데이터를 가져올 예정
+// req.app.get('jwt-secret'); 값을 가져오는 함수
 
 app.use('/mentor', mentorRouter);
 app.use('/mentee', menteeRouter);
@@ -55,27 +57,13 @@ app.use('/mentee', menteeRouter);
 // test code
 
 app.post('/test', (req, res) => {
-  const secret = 'omm';
-  const p = new Promise((resolve, reject) => {
-    jwt.sign(
-        {
-            _id: 'user._id',
-            username: 'user.username',
-            admin: 'user.admin',
-        },
-        secret,
-        {
-            expiresIn: '7d',
-            issuer: 'velopert.com',
-            subject: 'userInfo',
-        }, (err, token) => {
-            if (err) reject(err);
-            resolve(token);
-        },
-);
+// header에 저장되어 있는 x-access-token의 값을 가져옵니다.
+const token = req.get('x-access-token');
+jwtVerify(token).then((result) => {
+  console.log(result.id);
+  res.send(result);
 });
-p.then((token) => res.send(token));
-  // res.send('this res is ok!');
+// res.send('this res is ok!');
 });
 
 app.set('port', port);

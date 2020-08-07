@@ -9,11 +9,11 @@ module.exports = {
 			dialect: 'mysql',
 			logging: false,
 	},
-	development: { // 배포할 때 RDS 연결 정보
+	development: { // 배포할 때 DATABASE 연결 정보
 			username: 'root',
-			password: '7588',
+			password: process.env.DATABASE_PASSWORD,
 			database: 'user',
-			host: 'localhost',
+			host: '14.50.138.127',
 			port: 3306,
 			dialect: 'mysql',
 			logging: false,

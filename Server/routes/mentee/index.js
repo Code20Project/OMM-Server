@@ -15,9 +15,6 @@ router.post('/signin', menteeController.signin.post);
 // * POST /signup
 router.post('/signup', menteeController.signup.post);
 
-// * GET /signout
-router.get('/signout', menteeController.signout.get);
-
 router.use('/mypage', mypageRouter);
 
 module.exports = router;

@@ -11,7 +11,7 @@ router.get('/profile/:id', mypageController.profile.get);
 router.patch('/profile/:id', mypageController.profile.patch);
 
 //  * GET /pre-ordered_Lectures
-router.get('/pre-ordered-lectures/:id', mypageController.preOrderedLectures.get);
+router.get('/pre-ordered-lectures', mypageController.preOrderedLectures.get);
 
 //  * GET /my-lecture-list
 router.get('/my-lecture-list', mypageController.myLectureList.get);

@@ -7,10 +7,10 @@ const { navigationbarController } = require('../../../controllers/mentor');
 const lectureReservationRouter = require('./lectureReservation');
 
 //  * GET /lecture-registration
-router.get('/lecture-registration/:id', navigationbarController.lectureRegistration.get);
+router.get('/lecture-registration', navigationbarController.lectureRegistration.get);
 
 //  * POST /lecture-registration
-router.post('/lecture-registration/:id', navigationbarController.lectureRegistration.post);
+router.post('/lecture-registration', navigationbarController.lectureRegistration.post);
 
 router.use('/lecture-reservation', lectureReservationRouter);
 

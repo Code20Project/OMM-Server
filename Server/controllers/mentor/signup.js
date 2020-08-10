@@ -6,7 +6,7 @@ module.exports = {
     post: (req, res) => {
          // eslint-disable-next-line camelcase
         const {
- mentor_name, email, password, sex, phone, birthday, certification_path,
+ username, email, password, sex, phone, birthday, certification_path,
 } = req.body;
         Mentors
         .findOrCreate({
@@ -14,7 +14,7 @@ module.exports = {
                 email,
             },
             defaults: {
-                mentor_name,
+                mentor_name: username,
                 password,
                 sex,
                 phone,

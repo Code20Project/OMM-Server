@@ -18,10 +18,11 @@ module.exports = {
             if (result === null) {
                 res.status(404).json({ message: 'unvalid user' });
             } else {
-                jwtSign(result.id, result.username, 'mentee').then((token) => {
+                jwtSign(result.id, result.mentee_name, 'mentee').then((token) => {
                     res.set('x-access-token', token);
                     res.status(200).json({
-                        username: result.username,
+                        email: result.email,
+                        username: result.mentee_name,
                         position: 'mentee',
                     });
                 });

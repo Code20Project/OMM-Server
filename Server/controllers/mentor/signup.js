@@ -6,7 +6,7 @@ module.exports = {
     post: (req, res) => {
          // eslint-disable-next-line camelcase
         const {
- mentor_name, email, password, sex, phone, birthday, certification_path,
+ username, email, password, sex, phone, birthday, certification_path,
 } = req.body;
         Mentors
         .findOrCreate({
@@ -14,7 +14,7 @@ module.exports = {
                 email,
             },
             defaults: {
-                mentor_name,
+                mentor_name: username,
                 password,
                 sex,
                 phone,
@@ -25,12 +25,14 @@ module.exports = {
         // eslint-disable-next-line consistent-return
         .then(async ([result, created]) => {
             if (!created) {
-                return res.status(409).send('Already exists user');
+                return res.sendStatus(409);
             }
             const data = await result.get({ plain: true });
-            res.status(200).json(data);
+            console.log('mentor SignupData: ', data);
+            res.sendStatus(201);
         }).catch((err) => {
-            res.status(500).send(err);
+            console.log(err);
+            res.sendStatus(500);
         });
     },
 };

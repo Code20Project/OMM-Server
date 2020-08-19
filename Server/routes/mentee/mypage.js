@@ -5,13 +5,13 @@ const router = express.Router();
 const { mypageController } = require('../../controllers/mentee');
 
 //  * GET /profile
-router.get('/profile/:id', mypageController.profile.get);
+router.get('/profile', mypageController.profile.get);
 
 //  * PATCH /profile
-router.patch('/profile/:id', mypageController.profile.patch);
+router.patch('/profile', mypageController.profile.patch);
 
 //  * GET /pre-ordered_Lectures
-router.get('/pre-ordered-lectures/:id', mypageController.preOrderedLectures.get);
+router.get('/pre-ordered-lectures', mypageController.preOrderedLectures.get);
 
 //  * GET /my-lecture-list
 router.get('/my-lecture-list', mypageController.myLectureList.get);

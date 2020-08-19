@@ -2,11 +2,14 @@ const db = require('../../../models');
 
 const { LectureReservation } = db;
 const { Lecture } = db;
+const { jwtVerify } = require('../../../jwt');
 
 module.exports = {
     get: (req, res) => {
-        if (req.params.id) {
-            console.log('r');
+        const token = req.get('x-access-token');
+        if (token) {
+             jwtVerify(token).then((payload) => {
+        if (payload.id) {
             LectureReservation
             .findAll({
                 includes: [
@@ -23,14 +26,19 @@ module.exports = {
             .then((result) => {
                 console.log(result);
                 if (result) {
-                    res.status(200).json({ message: result });
+                   res.sendStatus(200);
                 } else {
-                    res.status(409).json({ message: 'Wrong Access' });
+                    res.sendStatus(409);
                 }
             })
             .catch((err) => {
-                res.status(500).json({ message: err });
+                console.log(err);
+                res.sendStatus(500);
             });
         }
-    },
+    }).catch((err) => {
+        console.log(`jwtVerify error: ${err}`);
+    });
+   }
+ },
 };

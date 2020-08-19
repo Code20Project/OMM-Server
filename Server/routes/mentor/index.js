@@ -13,9 +13,6 @@ router.post('/signin', mentorController.signin.post);
 // * POST /signup
 router.post('/signup', mentorController.signup.post);
 
-// * GET /signout
-router.get('/signout', mentorController.signout.get);
-
 router.use('/mypage', mypageRouter);
 
 router.use('/navigationbar', navigationbarRouter);

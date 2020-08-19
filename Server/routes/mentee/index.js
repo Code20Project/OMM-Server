@@ -1,11 +1,9 @@
-// const express = require('express');
+const express = require('express');
 
-//  const router = express.Router();
+ const router = express.Router();
 
 // get menteeController
 const { menteeController } = require('../../controllers');
-
-const router = require('../mentor/mypage');
 
 const mypageRouter = require('./mypage');
 

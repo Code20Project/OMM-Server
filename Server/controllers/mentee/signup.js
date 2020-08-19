@@ -5,7 +5,7 @@ const { Mentees } = db;
 module.exports = {
     post: (req, res) => {
         const {
-            email, password, phone, birthday, sex,
+            email, password, phone, birthday, sex, username,
         } = req.body;
         // sequlize hooks를 사용해서 password를 암호화 하는 작업을 해야 한다.
 
@@ -19,6 +19,7 @@ module.exports = {
                 sex,
                 phone,
                 birthday,
+                mentee_name: username,
             },
         })
         // eslint-disable-next-line consistent-return
